@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 # -*- encoding:utf-8 -*-
 
+"""Create pretty or awful trees."""
+
 import math
 import random
 import argparse
 from PIL import Image, ImageDraw
-
-"""Create pretty or awful trees."""
 
 def draw_line(draw, start, angle, length, width, color):
     """
