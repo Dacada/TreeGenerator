@@ -47,7 +47,7 @@ def draw_tree(draw, root, angle, length, width, total_length, p):
         new_width = int(round(width - random.gauss(*p['thinning'])))
         draw_tree(draw, leaf, new_angle, new_length, new_width, total_length, p)
 
-def get_parameters():
+def get_parameters(args=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--background_color', default="white", help="Color of the background")
     parser.add_argument('--foreground_color', default="black", help="Color of the tree")
@@ -58,7 +58,7 @@ def get_parameters():
     parser.add_argument('--starting_width', default=30, help="Width of the trunk. Branches get thinner with each generation. In pixels.", type=int)
     parser.add_argument('--max_length', default=400, help="Maximum length from the base to each leaf. Branches longer than this will never be created", type=int)
     parser.add_argument('--branch_chance_mu', default=3, help="Average number of new branches spawned from a branch", type=float)
-    parser.add_argument('--branch_chance_sigma', default=1, help="Standard deviation of new branches spawned from a branch", type=float)
+    parser.add_argument('--branch_chance_sigma', default=1, help="Standard deviation of new branches spawned from a branch", type=int)
     parser.add_argument('--angle_variance', default=30, help="Standard deviation for the angle of new branches. It's the previous angle deviated.", type=float)
     parser.add_argument('--shortening_mu', default=15, help="Average shortening with each generation", type=float)
     parser.add_argument('--shortening_sigma', default=1, help="Standard deviation for shortening", type=int)
@@ -69,7 +69,7 @@ def get_parameters():
     parser.add_argument('--min_angle', default=90, help="Minimum angle for branches. Branches twisting lower than this will be forced to this value", type=float)
     parser.add_argument('--max_angle', default=270, help="Maximum angle for branches. Branches twisting higher than this will be forced to this value", type=float)
 
-    args = parser.parse_args()
+    args = parser.parse_args(args)
     
     return {
         'background_color' : args.background_color,
